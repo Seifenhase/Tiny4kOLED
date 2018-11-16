@@ -242,10 +242,10 @@ size_t SSD1306Device::write(byte c) {
 
 void SSD1306Device::bitmap(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, const uint8_t bitmap[]) {
 	uint16_t j = 0;
- 	for (uint8_t y = y0; y < y1; y++) {
+ 	for (uint8_t y = y0; y < y1 +1; y++) {
 		setCursor(x0,y);
 		ssd1306_send_data_start();
-		for (uint8_t x = x0; x < x1; x++) {
+		for (uint8_t x = x0; x < x1 +1; x++) {
 			ssd1306_send_data_byte(pgm_read_byte(&bitmap[j++]));
 		}
 		ssd1306_send_stop();
